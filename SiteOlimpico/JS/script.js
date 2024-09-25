@@ -1,61 +1,129 @@
 const modal = document.getElementById('myModal')
-const abrirModal = document.querySelector('#myQuiz')
+const abrirModal = document.querySelectorAll('.myQuiz')
 const closeModal = document.querySelector('.modal-content button')
-const milano = document.querySelector('.milano')
+const milano = document.querySelectorAll('.milano')
 const milano2 = document.querySelector('#box-image button')
-const paris = document.querySelector('#paris')
-const coi = document.querySelector('#coi')
-const losAngeles = document.querySelector('#losAngeles')
-const brisbane = document.querySelector('#brisbane')
-const museu = document.querySelector('#museu')
-const store = document.querySelector('#store')
-const foundation = document.querySelector('#foundation')
-const atletas = document.querySelector('#atletas')
-const esportes = document.querySelector('#esportes')
-const move = document.querySelector('#move')
+const paris = document.querySelectorAll('.paris')
+const coi = document.querySelectorAll('.coi')
+const losAngeles = document.querySelectorAll('.losAngeles')
+const brisbane = document.querySelectorAll('.brisbane')
+const museu = document.querySelectorAll('.museu')
+const store = document.querySelectorAll('.store')
+const foundation = document.querySelectorAll('.foundation')
+const atletas = document.querySelectorAll('.atletas')
+const esportes = document.querySelectorAll('.esportes')
+const move = document.querySelectorAll('.move')
+const navs = document.querySelectorAll(".nav-teste")
+const navMenu = document.querySelector("#navMenu")
+const btnOpenNavMenu = document.querySelector("#container-menu-mobile")
+const btnCloseNavMenu = document.querySelector("#closeNavMenu")
+const medalhas = document.querySelectorAll('.medalhas')
+const navNome = ["LA 2028","Alpes Franceses 2030","Brisbane 2032","Denver 2034"]
 
-move.addEventListener('click', () => {
+function desableScroll (evt){
+  evt.preventDefault()
+}
+
+function changeNameBtnForDetalhes (){
+  const tamScreen = window.innerWidth
+  if(tamScreen < 1020){
+    navs.forEach((nav)=>{
+      nav.innerHTML = `Detalhes <i class="bi bi-chevron-double-right"></i>`
+    })
+  }else{
+    navs.forEach((nav,key)=>{
+      nav.innerHTML = `${navNome[key]} <i class="bi bi-chevron-double-right"></i>`
+    })
+  }
+  
+}
+
+window.onload = changeNameBtnForDetalhes
+window.onresize = changeNameBtnForDetalhes
+
+btnOpenNavMenu.addEventListener("click",()=>{
+  navMenu.classList.add("view")
+  window.addEventListener('wheel',desableScroll,{passive:false})
+  window.addEventListener('touchmove',desableScroll,{passive:false})
+})
+
+btnCloseNavMenu.addEventListener("click",()=>{
+  navMenu.classList.remove("view")
+  window.removeEventListener('wheel', desableScroll)
+  window.removeEventListener('touchmove', desableScroll)
+
+})
+
+medalhas.forEach((medalhas)=>{
+  medalhas.addEventListener('click',()=>{
+    window.location.href = 'medalhas.html'
+  })
+})
+
+move.forEach((move)=>{
+  move.addEventListener('click', () => {
     window.location.href = 'https://olympics.com/pt/lets-move/'
 })
+})
 
-esportes.addEventListener('click', () => {
+esportes.forEach((esportes)=>{
+  esportes.addEventListener('click', () => {
     window.location.href = 'https://olympics.com/pt/esportes/'
 })
+})
 
-atletas.addEventListener('click', () => {
+atletas.forEach((atletas)=>{
+  atletas.addEventListener('click', () => {
     window.location.href = 'https://olympics.com/pt/atletas/'
 })
+})
 
-foundation.addEventListener('click', () => {
+foundation.forEach((foundation)=>{
+  foundation.addEventListener('click', () => {
     window.location.href = 'https://olympics.com/en/olympic-refuge-foundation/'
 })
+})
 
-store.addEventListener('click', () => {
+store.forEach((store)=>{
+  store.addEventListener('click', () => {
     window.location.href = 'https://shop.olympics.com/en/?_s=bm-fi-olympic-shop-prtsite-shoptopnav-240821mh'
 })
-
-museu.addEventListener('click', () => {
-    window.location.href = 'https://olympics.com/pt/olympic-games/brisbane-2032'
 })
 
-brisbane.addEventListener('click', () => {
+museu.forEach((museu)=>{
+  museu.addEventListener('click', () => {
     window.location.href = 'https://olympics.com/pt/olympic-games/brisbane-2032'
 })
+})
 
-losAngeles.addEventListener('click', () => {
+brisbane.forEach((brisbane)=>{
+  brisbane.addEventListener('click', () => {
+    window.location.href = 'https://olympics.com/pt/olympic-games/brisbane-2032'
+})
+})
+
+losAngeles.forEach((losAngeles)=>{
+  losAngeles.addEventListener('click', () => {
     window.location.href = 'https://olympics.com/pt/olympic-games/los-angeles-2028'
 })
+})
 
-coi.addEventListener('click', () => {
+coi.forEach((coi)=>{
+  coi.addEventListener('click', () => {
     window.location.href = 'https://olympics.com/ioc'
 })
-
-paris.addEventListener('click', () => {
-    window.location.href = 'https://olympics.com/pt/paris-2024'
 })
 
-milano.addEventListener('click', () => {
+paris.forEach((paris)=>{
+  paris.addEventListener('click', () => {
+    window.location.href = 'https://olympics.com/pt/paris-2024'
+})
+})
+
+milano.forEach((milano)=>{
+  milano.addEventListener('click', () => {
     window.location.href = 'https://milanocortina2026.olympics.com/en'
+})
 })
 
 function abrirMilano() {
@@ -64,14 +132,20 @@ function abrirMilano() {
 
 
 
-abrirModal.addEventListener('click', (e) => {
+abrirModal.forEach((abrirModal)=>{
+  abrirModal.addEventListener('click', (e) => {
     e.preventDefault()
+    window.addEventListener('wheel',desableScroll,{passive:false})
+    window.addEventListener('touchmove',desableScroll,{passive:false})
     modal.style.display = 'block'
+})
 })
 
 closeModal.addEventListener('click', (e) => {
-    e.preventDefault()
-    modal.style.display = 'none'
+  e.preventDefault()
+  window.removeEventListener('wheel', desableScroll)
+  window.removeEventListener('touchmove', desableScroll)
+  modal.style.display = 'none'
 })
 
 
@@ -242,16 +316,13 @@ const allQuest = [
 
 const sortQuests = (arr)=> arr.sort(() => Math.random() - 0.5)
 
-let selectionQuests = sortQuests(allQuest.slice(0,10))
+let selectionQuests = sortQuests(allQuest).slice(0,10)
 let questIndex = 0
 let pointsQuest = 0
-
-quizDisplay.addEventListener('click', (evt)=> handleClick(evt))
 
 function checkingCorrectAnswer (questIndex, answer){
   if(selectionQuests[questIndex]?.letraCorreta == answer)
     pointsQuest += 100  
-  console.log(pointsQuest)
 }
 
 function handleClick (elementAnswer){
@@ -259,7 +330,6 @@ function handleClick (elementAnswer){
   checkingCorrectAnswer(questIndex,elementAnswer.srcElement.value)
   questIndex++
   // next Quest
-  console.log(questIndex)
   selectionQuests.map((quest,index)=>{
     if(questIndex == index){
       quizDisplay.innerHTML = `
@@ -273,6 +343,12 @@ function handleClick (elementAnswer){
       `
   }
   })
+
+  alternatives = document.querySelectorAll('.alternative')
+  alternatives.forEach((alternativa)=>{
+    alternativa.addEventListener('click', (evt)=> handleClick(evt))
+  })
+
   if(questIndex == 10){
     quizDisplay.innerHTML = `
       <h1>Parabéns você fez ${pointsQuest} pontos</h1>
@@ -297,3 +373,7 @@ selectionQuests.map((quest,index)=>{
 
 )
 
+let alternatives = document.querySelectorAll(".alternative")
+alternatives.forEach((alternativa)=>{
+  alternativa.addEventListener('click', (evt)=> handleClick(evt))
+})
